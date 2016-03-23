@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;  
 import java.sql.PreparedStatement;  
 import java.sql.ResultSet;  
-import java.sql.SQLException;  
+import java.sql.SQLException;
+
+import com.domain.User;  
   
 public class LoginDao {  
     public static boolean validate(String name, String pass) {          
@@ -57,5 +59,61 @@ public class LoginDao {
             }  
         }  
         return status;  
-    }  
+    }
+
+	public static boolean registerUser(User user) {
+		// TODO Auto-generated method stub
+		boolean status = false;  
+        Connection conn = null;  
+        PreparedStatement pst = null;  
+        int rs;  
+  
+        String url = "jdbc:mysql://localhost:3306/";  
+        String dbName = "letsride";  
+        String driver = "com.mysql.jdbc.Driver";  
+        String userName = "root";  
+        String password = "root";  
+        try { 
+        	
+        	int i=3;
+            Class.forName(driver).newInstance();  
+            conn = DriverManager  
+                    .getConnection(url + dbName, userName, password);  
+  
+            pst = conn.prepareStatement("insert into users values(?,?,?,?,?,?,?,?)");
+            pst.setInt(1, i);
+            pst.setString(2, user.getFirstname());  
+            pst.setString(3, user.getLastname()); 
+            pst.setString(4, user.getEmail());
+            pst.setString(5, user.getAddress());
+            pst.setString(6, user.getCity());
+            pst.setInt(7, user.getAge());
+            pst.setString(8, user.getPassword());
+            
+           
+  
+            rs = pst.executeUpdate();  
+              
+  
+        } catch (Exception e) {  
+            System.out.println(e);  
+        } finally {  
+            if (conn != null) {  
+                try {  
+                    conn.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if (pst != null) {  
+                try {  
+                    pst.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            
+        }  
+        return true;  
+	}  
 }  
