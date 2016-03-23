@@ -80,15 +80,21 @@ public class LoginDao {
             conn = DriverManager  
                     .getConnection(url + dbName, userName, password);  
   
-            pst = conn.prepareStatement("insert into users values(?,?,?,?,?,?,?,?)");
-            pst.setInt(1, i);
+            pst = conn.prepareStatement("insert into users values(?,?,?,?,?,?,?,?,?,?,?,?)");
+            pst.setInt(1, user.getId());
             pst.setString(2, user.getFirstname());  
             pst.setString(3, user.getLastname()); 
-            pst.setString(4, user.getEmail());
-            pst.setString(5, user.getAddress());
-            pst.setString(6, user.getCity());
-            pst.setInt(7, user.getAge());
-            pst.setString(8, user.getPassword());
+            pst.setString(4, user.getPassword());
+            pst.setInt(5, user.getAge());
+            pst.setString(6, user.getEmail());
+            pst.setLong(7, user.getPhone());
+            pst.setString(8, user.getSex());
+            pst.setString(9, user.getAddress());
+            pst.setString(10, user.getCity());
+            pst.setLong(11, user.getZip());
+            pst.setString(12, user.getRole());
+            
+            
             
            
   

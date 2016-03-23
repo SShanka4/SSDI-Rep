@@ -1,6 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"  
     pageEncoding="ISO-8859-1"%>  
 <html>  
+<script language="javascript">
+function validation()
+{
+	if (document.signup.firstname.value == "") 
+	{
+    	document.getElementById('errors').innerHTML="*Please enter a username*";
+    	return false;
+	}
+}
+</script>
 <head>  
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">  
 <title>Login Application</title>  
@@ -25,7 +35,7 @@
         </fieldset>  
     </form> 
     
-      <form action="/LetsRide/login" method="post">  
+      <form name="signup" action="/LetsRide/login" method="post" onsubmit="return validation();">  
         <fieldset style="width: 300px">  
             <legend> Sign UP </legend>  
             <table>  
@@ -39,7 +49,7 @@
                 </tr> 
                   <tr>  
                     <td>Email ID</td>  
-                    <td><input type="text" name="email" required="required" /></td>  
+                    <td><input type="text" name="email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" /></td>  
                 </tr> 
                   <tr>  
                     <td>Sex</td>  

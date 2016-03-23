@@ -72,28 +72,38 @@ public class LoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html");    
         PrintWriter out = response.getWriter();    
-          
+        
+        //Look at this piece of code everytime you run
+        int id=4;
         String firstname=request.getParameter("firstname");    
         String lastname=request.getParameter("lastname");  
         String email=request.getParameter("email");    
         String sex=request.getParameter("sex"); 
-        String password=request.getParameter("userpass");    
+        String password=request.getParameter("userpass"); 
+        String confirmPassword=request.getParameter("confirmpass");
+        if(password==confirmPassword)
+        {
         String phone=request.getParameter("phone"); 
         String age=request.getParameter("age");    
         String address=request.getParameter("address"); 
         String city=request.getParameter("city");    
         String zip=request.getParameter("zip"); 
+        String defaultRole="T";
         
         User user=new User();
+        
+        user.setId(id);
         user.setFirstname(firstname);
         user.setLastname(lastname);
         user.setEmail(email);
         user.setPassword(password);
         user.setPhone(Long.parseLong(phone));
         user.setAge(Integer.parseInt(age));
+        user.setSex(sex);
         user.setAddress(address);
         user.setCity(city);
         user.setZip(Long.parseLong(zip));
+        user.setRole(defaultRole);
         
         
         LoginService loginService=new LoginService();
@@ -101,6 +111,13 @@ public class LoginServlet extends HttpServlet {
         if(userInserted)
         {
         	out.print("<p style=\"color:red\">User successfully registered! You can login now!</p>");
+        	RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
+        }
+        
+        }
+        else
+        {
+        	out.print("<p style=\"color:red\">Passwords do not match!</p>");
         	RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
         }
   
