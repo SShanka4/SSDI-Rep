@@ -74,14 +74,14 @@ public class LoginServlet extends HttpServlet {
         PrintWriter out = response.getWriter();    
         
         //Look at this piece of code everytime you run
-        int id=4;
+        int id=5;
         String firstname=request.getParameter("firstname");    
         String lastname=request.getParameter("lastname");  
         String email=request.getParameter("email");    
         String sex=request.getParameter("sex"); 
         String password=request.getParameter("userpass"); 
         String confirmPassword=request.getParameter("confirmpass");
-        if(password==confirmPassword)
+        if(password.equals(confirmPassword))
         {
         String phone=request.getParameter("phone"); 
         String age=request.getParameter("age");    
