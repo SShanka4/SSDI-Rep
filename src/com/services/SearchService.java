@@ -3,15 +3,16 @@ package com.services;
 import java.util.ArrayList;
 
 import com.dao.SearchDao;
+import com.domain.Travel;
 
 public class SearchService {
 
-	public ArrayList searchByName(String pid) {
+	public Travel searchByName(String pid,String destination) {
 		// TODO Auto-generated method stub
-		ArrayList pid_list = new ArrayList();
+		Travel travel=new Travel();
 		SearchDao searchDao=new SearchDao();
-		pid_list=searchDao.searchByName(pid);
-		return pid_list;
+		travel=searchDao.searchByName(pid,destination);
+		return travel;
 		
 	}
 

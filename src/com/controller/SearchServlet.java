@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.domain.Travel;
 import com.services.SearchService;
  
 public class SearchServlet extends HttpServlet {
@@ -19,13 +20,15 @@ public class SearchServlet extends HttpServlet {
         
             System.out.println("Connected!");
             String pid = request.getParameter("pid");
+            String destination = request.getParameter("destination");
+            
+            
             
  
-            ArrayList al = null;
-            ArrayList pid_list = new ArrayList();
+            Travel travel=new Travel();
             SearchService searchService=new SearchService();
-            pid_list=searchService.searchByName(pid);            
-            request.setAttribute("piList", pid_list);
+            travel=searchService.searchByName(pid,destination);            
+            request.setAttribute("piList", travel);
             RequestDispatcher view = request.getRequestDispatcher("/searchview.jsp");
             view.forward(request, response);
 

@@ -9,11 +9,12 @@ import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 
+import com.domain.Travel;
 import com.services.SearchService;
 
 public class SearchDao {
 
-	public ArrayList searchByName(String pid) {
+	public Travel searchByName(String pid,String destination) {
 		// TODO Auto-generated method stub
 		
  
@@ -23,13 +24,14 @@ public class SearchDao {
  
             ArrayList al = null;
             ArrayList pid_list = new ArrayList();
-            String query = "select * from users where firstname='" + pid + "' ";
+            String query = "select * from travel where source='" + pid + "' and destination='" + destination + "' ";
  
             System.out.println("query " + query);
             
             try{
             st = conn.createStatement();
             ResultSet rs = st.executeQuery(query);
+            Travel travel=new Travel();
  
             while (rs.next()) {
                 al = new ArrayList();
@@ -38,17 +40,19 @@ public class SearchDao {
 //                out.println(rs.getString(2));
 //                out.println(rs.getString(3));
 //                out.println(rs.getString(4));
-                al.add(rs.getString(1));
-                al.add(rs.getString(2));
-                al.add(rs.getString(3));
-                al.add(rs.getString(4));
+                travel.setId(Integer.parseInt(rs.getString(1))); 
+                travel.setSource(rs.getString(2)); 
+                travel.setDestination(rs.getString(3));
+                travel.setDistance(Long.parseLong(rs.getString(4)));
+                travel.setPrice(Integer.parseInt(rs.getString(5)));
+                travel.setUserid(Integer.parseInt(rs.getString(6)));
  
-                System.out.println("al :: " + al);
-                pid_list.add(al);
+               // System.out.println("al :: " + al);
+                //pid_list.add(al);
             }
             conn.close();
             System.out.println("Disconnected!");
-            return pid_list;
+            return travel;
             }
             
             catch (Exception e) {
