@@ -2,6 +2,7 @@ package com.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Random;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -74,7 +75,8 @@ public class LoginServlet extends HttpServlet {
         PrintWriter out = response.getWriter();    
         
         //Look at this piece of code everytime you run
-        int id=5;
+        
+        int id=8;
         String firstname=request.getParameter("firstname");    
         String lastname=request.getParameter("lastname");  
         String email=request.getParameter("email");    

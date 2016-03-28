@@ -10,9 +10,11 @@
  <form method="post" name="frm" action="Search">
       <table border="0" width="300" align="center" bgcolor="#e9f">
         <tr><td colspan=2 style="font-size:12pt;" align="center">
-        <h3>Search User</h3></td></tr>
-        <tr><td ><b>User Name</b></td>
-          <td>: <input  type="text" name="pid" id="pid">
+        <h3>Search rides</h3></td></tr>
+        <tr><td ><b>Source</b></td>
+        <td>: <input  type="text" name="pid" id="pid">
+        <tr><td ><b>Destination</b></td>
+          <td>: <input  type="text" name="destination" id="destination">
         </td></tr>        
         <tr><td colspan=2 align="center">
         <input  type="submit" name="submit" value="Search"></td></tr>

@@ -6,7 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;  
 import java.sql.SQLException;
 
-import com.domain.User;  
+import com.domain.User;
+import com.mysql.jdbc.Statement;  
   
 public class LoginDao {  
     public static boolean validate(String name, String pass) {          
@@ -79,6 +80,14 @@ public class LoginDao {
             Class.forName(driver).newInstance();  
             conn = DriverManager  
                     .getConnection(url + dbName, userName, password);  
+            
+            Statement st=(Statement) conn.createStatement();
+            String sql="select max(id) from users";
+            ResultSet maxId=st.executeQuery(sql);
+            while(maxId.next())
+            {
+            	user.setId(maxId.getInt(1)+1);
+            }
   
             pst = conn.prepareStatement("insert into users values(?,?,?,?,?,?,?,?,?,?,?,?)");
             pst.setInt(1, user.getId());
