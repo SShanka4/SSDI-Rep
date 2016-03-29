@@ -79,9 +79,9 @@ public class TravelServlet extends HttpServlet {
         boolean userInserted=travelService.postTravel(travel);
         if(userInserted)
         {
-        	out.print("<p style=\"color:red\">User successfully registered! You can login now!</p>");
+        	
         	RequestDispatcher rd=request.getRequestDispatcher("postSuccess.jsp");
-        	rd.forward(request, response);
+        	
         }
         
       
