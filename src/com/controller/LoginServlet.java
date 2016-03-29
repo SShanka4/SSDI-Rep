@@ -46,12 +46,21 @@ public class LoginServlet extends HttpServlet {
         session.setAttribute("name", n);  
   
         LoginService loginService=new LoginService();
-        boolean isValid=loginService.validate(n,p);
+        User user=new User();
+        user=loginService.validate(n,p);
         
-        if(isValid){    
-            RequestDispatcher rd=request.getRequestDispatcher("welcome.jsp");    
+        System.out.println(user.getFirstname());
+        System.out.println(user.getRole());
+        if(user.getRole().equals("T")){   
+        	session.setAttribute("name", user); 
+        	RequestDispatcher rd=request.getRequestDispatcher("welcome.jsp");    
             rd.forward(request,response);    
-        }    
+        }   
+        else if(user.getRole().equals("D")){
+        	session.setAttribute("name", user); 
+        	RequestDispatcher rd=request.getRequestDispatcher("welcomeDriver.jsp");    
+            rd.forward(request,response); 
+        }
         else{    
             out.print("<p style=\"color:red\">Sorry username or password error</p>");    
             RequestDispatcher rd=request.getRequestDispatcher("index.jsp");    
@@ -90,7 +99,7 @@ public class LoginServlet extends HttpServlet {
         String address=request.getParameter("address"); 
         String city=request.getParameter("city");    
         String zip=request.getParameter("zip"); 
-        String defaultRole="T";
+        String defaultRole=request.getParameter("role");
         
         User user=new User();
         
@@ -113,7 +122,8 @@ public class LoginServlet extends HttpServlet {
         if(userInserted)
         {
         	out.print("<p style=\"color:red\">User successfully registered! You can login now!</p>");
-        	RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
+        	RequestDispatcher rd=request.getRequestDispatcher("registerSuccess.jsp");
+        	rd.forward(request, response);
         }
         
         }

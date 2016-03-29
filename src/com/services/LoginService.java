@@ -5,10 +5,11 @@ import com.domain.User;
 
 public class LoginService {
 
-	public boolean validate(String n, String p) {
+	public User validate(String n, String p) {
 		// TODO Auto-generated method stub
-		boolean isValid=LoginDao.validate(n, p);
-		return isValid;
+		User user =new User();
+		user=LoginDao.validate(n, p);
+		return user;
 	}
 	
 	public boolean registerUser(User user) {

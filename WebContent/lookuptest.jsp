@@ -63,31 +63,29 @@ div.relative {
 
     </style>
  </head>
-
- <body>
-  <img src="file:///C:\Users\Vishal\workspace\LetsRide\WebContent\letsride.png" alt="Lets Ride" >
  
-     <h1 style="text-align:center";"font-size:200%";"font-family:Monotype Corsiva"><i> Login your LetsRide Account</i></h1>    
-    <div class="container-fluid">
+ <body>
+  <img src="file:///C:\Users\mannu\Desktop\carpool.jpg" alt="Lets Ride" >
+     <h1 style="text-align:center";"font-size:200%";"font-family:Monotype Corsiva"><i> Login your LetsRide Account</i></h1>
+
+ <div class="container-fluid">
  
 <div class="relative">
 <div>
-  <form action="/LetsRide/login" method="get">
-    <label for="fname";style="color:blue"><b> Username</b></label> <br>
-    <input type="text" id="fname" name="username" required="required" placeholder="Enter E-mail">
+  <form action="action_page.php">
+    <label for="fname";style="color:blue"><b> Login</b></label> <br>
+    <input type="text" id="fname" name="firstname" required="required" placeholder="Enter E-mail">
     <br> 
     <p>
     <label for="lname"><b>Password</b></label>  <br>
-    <input type="password" id="lname" name="userpass" required="required" placeholder="Enter Password">
+    <input type="password" id="lname" name="lastname" required="required" placeholder="Enter Password">
     <br>
-        <input type="submit" value="Sign In">
-        <a href=register.jsp>New User? Sign Up</a>
+        <input type="submit" value="Submit">
   </form>
 </div>
 </div>
 </div>
-    
 
 
-  </body>  
-</html>  
+</body>
+</html>

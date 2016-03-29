@@ -10,7 +10,7 @@ import com.domain.User;
 import com.mysql.jdbc.Statement;  
   
 public class LoginDao {  
-    public static boolean validate(String name, String pass) {          
+    public static User validate(String name, String pass) {          
         boolean status = false;  
         Connection conn = null;  
         PreparedStatement pst = null;  
@@ -26,13 +26,22 @@ public class LoginDao {
             conn = DriverManager  
                     .getConnection(url + dbName, userName, password);  
   
+            User user=new User();
             pst = conn.prepareStatement("select * from users where firstname=? and password=?");  
             pst.setString(1, name);  
             pst.setString(2, pass); 
            
   
-            rs = pst.executeQuery();  
-            status = rs.next();  
+            rs = pst.executeQuery(); 
+            
+            while(rs.next())
+            {
+                   user.setFirstname(rs.getString(2));
+                   user.setLastname(rs.getString(3));
+                   user.setRole(rs.getString(12));
+            }
+            //status = rs.next(); 
+            return user; 
   
         } catch (Exception e) {  
             System.out.println(e);  
@@ -59,7 +68,8 @@ public class LoginDao {
                 }  
             }  
         }  
-        return status;  
+        return null;
+         
     }
 
 	public static boolean registerUser(User user) {

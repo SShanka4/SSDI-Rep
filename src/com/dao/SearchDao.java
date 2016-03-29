@@ -34,7 +34,7 @@ public class SearchDao {
             Travel travel=new Travel();
  
             while (rs.next()) {
-                al = new ArrayList();
+                //al = new ArrayList();
  
 //                out.println(rs.getString(1));
 //                out.println(rs.getString(2));

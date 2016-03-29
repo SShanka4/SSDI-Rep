@@ -103,6 +103,16 @@ function validation()
                     <td><input type="text" name="zip" required="required" /></td>  
                 </tr>     
                 </div>
+                     <div class="form-group">
+                  <tr>  
+                    <td>Role</td>  
+                    <td>               <select name="role">
+  											<option value="T">Traveler</option>
+ 											 <option value="D">Driver</option>
+										</select>
+				 </td>  
+                </tr>
+                </div>
                 <div class="form-group">
                 <tr>  
                     <td><input type="submit" value="Login" /></td>  
