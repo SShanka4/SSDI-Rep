@@ -51,6 +51,8 @@ public class LoginServlet extends HttpServlet {
         
         System.out.println(user.getFirstname());
         System.out.println(user.getRole());
+        try{
+        	
         if(user.getRole().equals("T")){   
         	session.setAttribute("name", user); 
         	RequestDispatcher rd=request.getRequestDispatcher("welcome.jsp");    
@@ -61,12 +63,24 @@ public class LoginServlet extends HttpServlet {
         	RequestDispatcher rd=request.getRequestDispatcher("welcomeDriver.jsp");    
             rd.forward(request,response); 
         }
+        else if(user.getRole().equals("A")){
+        	session.setAttribute("name", user); 
+        	RequestDispatcher rd=request.getRequestDispatcher("welcomeAdmin.jsp");    
+            rd.forward(request,response); 
+        }
         else{    
             out.print("<p style=\"color:red\">Sorry username or password error</p>");    
             RequestDispatcher rd=request.getRequestDispatcher("index.jsp");    
             rd.include(request,response);    
         }    
-  
+        }
+       catch (Exception e) {  
+            System.out.println(e);
+            out.print("<p style=\"color:red\">Sorry username or password error</p>");    
+            RequestDispatcher rd=request.getRequestDispatcher("index.jsp");    
+            rd.include(request,response);
+        	
+        }
         out.close();
     
 	}

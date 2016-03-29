@@ -20,13 +20,13 @@
     User user =(User) session.getAttribute("name");
 	%>  
     <h4>  
-        Hello, <%=user.getFirstname()%></h4>  
+        Hello, <%=user.getFirstname()%> </h4>  
      
      <form action="${pageContext.request.contextPath}/logout" method="post">
     <input type="submit" value="Logout" />
 </form>
         
-       
+      
  <form method="post" name="frm" action="Search" class="form">
  
       <table border="0" width="300" align="center" bgcolor="#e9f">
@@ -87,7 +87,7 @@
                 </div>
                  <div class="form-group">
                 <tr>  
-                    <td><input type="hidden" value="<%=user.getId()%>" name="sessionId"/></td>  
+                    <td><input type="hidden" value="<%=user.getFirstname()%>" name="sessionId"/></td>  
                 </tr>  
                 </div>
                 

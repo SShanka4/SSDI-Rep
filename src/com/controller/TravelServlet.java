@@ -54,7 +54,10 @@ public class TravelServlet extends HttpServlet {
         //User user=(User) request.getSession(false).getAttribute("name");
         //System.out.println(user.getId());
         //System.out.println(user.getFirstname());
-        int userid=Integer.parseInt(request.getParameter("sessionId"));
+        TravelService travelService=new TravelService();
+        String firstname=request.getParameter("sessionId");
+        int userid=travelService.fetchUserID(firstname);
+        System.out.println("this is the userId:"+userid);
         String source=request.getParameter("source");    
         String destination=request.getParameter("destination");  
         int price=Integer.parseInt(request.getParameter("price"));    
@@ -72,7 +75,7 @@ public class TravelServlet extends HttpServlet {
         travel.setId(id);
         
         
-        TravelService travelService=new TravelService();
+        
         boolean userInserted=travelService.postTravel(travel);
         if(userInserted)
         {

@@ -1,7 +1,7 @@
 <%@page import="java.util.Iterator"%>
 <%@ page import="java.util.*" %>
 <%@ page import="com.domain.Travel" %>
- 
+<%@ page import="com.domain.User" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -14,14 +14,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">  
-<title>Welcome <%=session.getAttribute("name")%></title>  
+<%
+    User user =(User) session.getAttribute("name");
+	%>  
+<title>Welcome <%=user.getFirstname()%></title>  
 </head>  
 <body>  
 <img class="img-responsive" img src="file:///C:\Users\mannu\Desktop\carpool.jpg" alt="Lets Ride" align="center" style="height:150px;width:200px">
     <h3>Having fun ha!!!</h3>  
     <h4>  
         Hello, enjoy our search 
-        <%=session.getAttribute("name")%></h4>  
+        <%=user.getFirstname()%></h4>  
  
 
         <table width="700px" align="center"

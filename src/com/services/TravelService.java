@@ -13,4 +13,12 @@ public class TravelService {
 		return posted;
 	}
 
+	public int fetchUserID(String firstname) {
+		// TODO Auto-generated method stub
+		
+		System.out.println("Service travel::"+firstname);
+		int userid=TravelDao.fetchUserId(firstname);
+		return userid;
+	}
+
 }

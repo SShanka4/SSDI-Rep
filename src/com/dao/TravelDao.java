@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import com.domain.Travel;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.ResultSet;
+import com.mysql.jdbc.Statement;
 
 public class TravelDao {
 
@@ -44,5 +45,43 @@ public class TravelDao {
         }  
 		
 		return true;
+	}
+
+	public static int fetchUserId(String firstname) {
+		// TODO Auto-generated method stub
+		java.sql.Statement st;
+        Connect connect=new Connect();
+        Connection conn=connect.initiateConnction();
+		System.out.println("hey inside try"+firstname);
+		String query = "select * from users where firstname='" + firstname + "'";
+		 
+        System.out.println("query " + query);
+        
+        try{
+        System.out.println("inside try");
+        st = conn.createStatement();
+        java.sql.ResultSet rs = st.executeQuery(query);
+        System.out.println("after query execution");
+        
+        while (rs.next()) {
+        	System.out.println("yes");
+           int userid=Integer.parseInt(rs.getString(1)); 
+           return userid;
+
+          
+        }
+        
+        conn.close();
+        System.out.println("Disconnected!");
+        
+        }
+        
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        
+        
+      return 0;
 	}
 }
