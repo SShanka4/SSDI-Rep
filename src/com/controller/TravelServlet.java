@@ -80,7 +80,7 @@ public class TravelServlet extends HttpServlet {
         if(userInserted)
         {
         	out.print("<p style=\"color:red\">User successfully registered! You can login now!</p>");
-        	RequestDispatcher rd=request.getRequestDispatcher("registerSuccess.jsp");
+        	RequestDispatcher rd=request.getRequestDispatcher("postSuccess.jsp");
         	rd.forward(request, response);
         }
         

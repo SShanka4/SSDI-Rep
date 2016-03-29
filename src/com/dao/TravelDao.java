@@ -13,14 +13,29 @@ public class TravelDao {
 	public static boolean postTravel(Travel travel)
 	{
 		Connection conn;
+		Statement st = null;
 		int rs;
 		PreparedStatement pst = null;
+		ResultSet maxId;
 		try 
 		{ 		
 		   Connect connect=new Connect();
-		   conn=connect.initiateConnction();		
-		   
+		   conn=connect.initiateConnction();	
+		    String sql="select max(id) from travel";
+		    try{
+		    	st = (Statement) conn.createStatement();
+            maxId=(ResultSet) st.executeQuery(sql);
+            while(maxId.next())
+            {
+            	travel.setId(maxId.getInt(1)+1);
+            }
+            System.out.println("max id fetched="+travel.getId());
+		    }catch (Exception e)
+		    {
+		    	System.out.println("Inside catch of max Id");
+		    }
 		   pst = conn.prepareStatement("insert into travel values (?,?,?,?,?,?,?)");
+
 		   pst.setInt(1, travel.getId());  
            pst.setString(2, travel.getSource()); 
            pst.setString(3, travel.getDestination());
